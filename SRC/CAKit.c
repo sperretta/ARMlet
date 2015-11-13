@@ -9,7 +9,6 @@
 /*****************************************************************/
 #include "fxlib.h"
 
-
 //****************************************************************************
 //  AddIn_main (Sample program main function)
 //
@@ -24,20 +23,20 @@
 //****************************************************************************
 int AddIn_main(int isAppli, unsigned short OptionNum)
 {
-    unsigned int key;
+	unsigned int key;
 
-    Bdisp_AllClr_DDVRAM();
+	Bdisp_AllClr_DDVRAM();
 
-    locate(1,4);
-    Print((unsigned char*)"This application is");
-    locate(1,5);
-    Print((unsigned char*)" sample Add-In.");
+	locate(1,4);
+	Print((unsigned char*)"This application is");
+	locate(1,5);
+	Print((unsigned char*)" sample Add-In.");
 
-    while(1){
-        GetKey(&key);
-    }
+	while(1){
+		GetKey(&key);
+	}
 
-    return 1;
+	return 1;
 }
 
 
@@ -70,8 +69,7 @@ unsigned long BR_Size;
 //****************************************************************************
 int InitializeSystem(int isAppli, unsigned short OptionNum)
 {
-    return INIT_ADDIN_APPLICATION(isAppli, OptionNum);
+	return INIT_ADDIN_APPLICATION(isAppli, OptionNum);
 }
 
 #pragma section
-

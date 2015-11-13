@@ -12,4 +12,4 @@ Debug=Debug\FXADDINror.dbg
 LoadAddress=80000000:90100000
 
 [Files]
-SourceFile=:CAKit.c
+SourceFile=:SRC\CAKit.c

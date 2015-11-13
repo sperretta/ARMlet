@@ -1,6 +1,7 @@
-# Ignore contents of debug and SD directories
+# Ignore contents of Debug, SD and INIT directories
 Debug/
 SDCard/
+INIT/
 
 # Ignore binary add-in files
 *.[gG]1[aA]
