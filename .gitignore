@@ -1,7 +1,13 @@
-# Ignore contents of debug directory
-
+# Ignore contents of debug and SD directories
 Debug/
+SDCard/
 
 # Ignore binary add-in files
-
 *.[gG]1[aA]
+
+# Ignore workspace and simulator preferences
+*.dlw
+*.dlr
+
+# Ignore build script
+FXSH_Build.bat
