@@ -1,0 +1,7 @@
+# Ignore contents of debug directory
+
+Debug/
+
+# Ignore binary add-in files
+
+*.[gG]1[aA]
