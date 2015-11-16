@@ -1,5 +1,6 @@
 #include "fxlib.h"
 #include "common/filesys.h"
+#include "common/syscalls.h"
 
 int AddIn_main(int isAppli, unsigned short OptionNum)
 {
@@ -22,6 +23,8 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		} else {
 			Print( ( const unsigned char * )nodes_list[i].name );
 		}
+
+		// To-do: print size
 		GetKey( &key );
 	}
 
