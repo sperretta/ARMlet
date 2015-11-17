@@ -1,6 +1,6 @@
 #include "fxlib.h"
 #include "common/filesys.h"
-#include "common/syscalls.h"
+//#include "common/syscalls.h"
 
 int AddIn_main(int isAppli, unsigned short OptionNum)
 {
@@ -9,7 +9,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 	unsigned int num_nodes = 0, i;
 
 	Bdisp_AllClr_DDVRAM();
-
+/*
 	num_nodes = read_dir( &nodes_list, DEVICE_STORAGE, NULL, "*" );
 
 	for( i = 0; i < num_nodes; i++ )
@@ -29,6 +29,9 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 	}
 
 	free_nodes( &nodes_list, num_nodes );
+*/
+
+	print_menu( 2 );
 
 	while( 1 )
 	{
