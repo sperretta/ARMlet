@@ -31,7 +31,12 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 	free_nodes( &nodes_list, num_nodes );
 */
 
-	print_menu( 2 );
+	GetKey( &key );
+	display_menu( 0 );
+	GetKey( &key );
+	display_menu( 1 );
+	GetKey( &key );
+	display_menu( 2 );
 
 	while( 1 )
 	{

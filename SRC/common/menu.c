@@ -2,7 +2,6 @@
  * Header file containing menu function implementations.
  */
 #include "menu.h"
-#include "syscalls.h"
 
 void draw_child( unsigned int position )
 {
@@ -11,6 +10,18 @@ void draw_child( unsigned int position )
 
 	Bdisp_DrawLineVRAM( x_base, 56, x_end , 56);
 	Bdisp_DrawLineVRAM( x_base, 56, x_base, 63);
+}
+
+void draw_child_filled( unsigned int position )
+{
+	unsigned int x_base = ( position * 21 ) + 2;
+	unsigned int x_end  = ( ( position + 1 ) * 21 ) - 1;
+	unsigned int i;
+
+	for( i = 56; i < 64; i++ )
+	{
+		Bdisp_DrawLineVRAM( x_base, i, x_end, i );
+	}
 }
 
 void draw_parent( unsigned int position )
@@ -38,7 +49,7 @@ void clear_menu()
 	}
 }
 
-void print_menu( unsigned int menu_id )
+void display_menu( unsigned int menu_id )
 {
 	unsigned int i = 0;
 
@@ -50,16 +61,32 @@ void print_menu( unsigned int menu_id )
 		{
 			case AL_MENU_TYPE_PARENT:
 				draw_parent( i );
+				PrintMini( ( i * 21 ) + 4, 58, menu_entries[menu_id][i].name, MINI_REV );
 			break;
 
 			case AL_MENU_TYPE_CHILD:
 				draw_child( i );
+				PrintMini( ( i * 21 ) + 4, 58, menu_entries[menu_id][i].name, 0 );
+			break;
+
+			case AL_MENU_TYPE_UP:
+				draw_child( i );
+				PrintMini( ( i * 21 ) + 10, 58, AL_MENU_UP, 0 );
+			break;
+
+			case AL_MENU_TYPE_PAGE_PREV:
+				draw_child( i );
+				PrintMini( ( i * 21 ) + 10, 58, AL_MENU_PREV, 0 );
+			break;
+
+			case AL_MENU_TYPE_PAGE_NEXT:
+				draw_child( i );
+				PrintMini( ( i * 21 ) + 10, 58, AL_MENU_TYPE_NEXT, 0 );
 			break;
 
 			case AL_MENU_TYPE_EMPTY:
 			default:
 			break;
 		}
-		//PrintMini( ( i * 21 ) + 3, 58, menu_entries[menu_id][i].name, 0 );
 	}
 }

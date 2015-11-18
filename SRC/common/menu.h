@@ -13,6 +13,10 @@ Menu CHILD as char name[4], position (0-5), type (PARENT/menu), function pointer
 #define AL_MENU_MAX_NAME 5
 #define AL_ENTRIES_PER_MENU 6
 
+#define AL_MENU_PREV      "\xE6\x9A"
+#define AL_MENU_TYPE_NEXT "\xE6\x9B"
+#define AL_MENU_UP        "\xE6\x9C"
+
 typedef enum menu_type {
 	AL_MENU_TYPE_PARENT,
 	AL_MENU_TYPE_UP,
@@ -39,12 +43,12 @@ const menu_CHILD menu_entries[][AL_ENTRIES_PER_MENU] = {
 		{ "",     5, AL_MENU_TYPE_PAGE_NEXT,  1 }
 	},
 	{ // 1
-		{ "Sel",  0, AL_MENU_TYPE_PARENT,   2 },
-		{ "NewD", 1, AL_MENU_TYPE_CHILD,   -1 },
-		{ "Srch", 2, AL_MENU_TYPE_CHILD,   -1 },
-		{ "Info", 3, AL_MENU_TYPE_CHILD,   -1 },
-		{ "Sett", 4, AL_MENU_TYPE_CHILD,   -1 },
-		{ "",     5, AL_MENU_TYPE_UP,      -1 }
+		{ "Sel",  0, AL_MENU_TYPE_PARENT,     2 },
+		{ "AddD", 1, AL_MENU_TYPE_CHILD,     -1 },
+		{ "Srch", 2, AL_MENU_TYPE_CHILD,     -1 },
+		{ "Info", 3, AL_MENU_TYPE_CHILD,     -1 },
+		{ "Sett", 4, AL_MENU_TYPE_CHILD,     -1 },
+		{ "",     5, AL_MENU_TYPE_PAGE_PREV, -1 }
 	},
 	{ // 2
 		{ "Sel",  0, AL_MENU_TYPE_CHILD,     -1 },
@@ -52,10 +56,12 @@ const menu_CHILD menu_entries[][AL_ENTRIES_PER_MENU] = {
 		{ "Move", 2, AL_MENU_TYPE_CHILD,     -1 },
 		{ "",     3, AL_MENU_TYPE_EMPTY,     -1 },
 		{ "",     4, AL_MENU_TYPE_EMPTY,     -1 },
-		{ "",     5, AL_MENU_TYPE_PAGE_PREV,  1 }
+		{ "",     5, AL_MENU_TYPE_UP,         1 }
 	}
 };
 
-void print_menu( unsigned int menu_id );
+void display_menu( unsigned int menu_id );
+
+void clear_menu();
 
 #endif
