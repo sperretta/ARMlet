@@ -4,7 +4,7 @@
 [OUTPUT]     : "ARMLET.G1A"
 [BINDATA]    : "FXADDINror.bin"
 [DISPNAME]   : "ARMlet"
-[APPNAME]    : "@ARMlet"
+[APPNAME]    : "@ARMLET"
 [VERSION]    : "01.00.0000"
 [APL_ICON]   : "MainIcon.bmp"
 [MODULE_NUM] : 0
