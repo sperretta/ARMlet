@@ -6,6 +6,8 @@
 #include "fxlib.h"
 #include "common/filesys.h"
 #include "common/menu.h"
+#include "common/keyb.h"
+#include "common/syscalls.h"
 
 /**
  * Program entrypoint.
@@ -18,15 +20,11 @@
 int AddIn_main(int isAppli, unsigned short OptionNum)
 {
 	unsigned int key;
+	char result[6];
 
 	Bdisp_AllClr_DDVRAM();
 
-	GetKey( &key );
-	display_menu( explorer_entries, 0 );
-	GetKey( &key );
-	display_menu( explorer_entries, 1 );
-	GetKey( &key );
-	display_menu( explorer_entries, 2 );
+	read_string( result, 5, 1, 1 );
 
 	while( 1 )
 	{

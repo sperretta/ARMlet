@@ -15,3 +15,4 @@ LoadAddress=80000000:90100000
 SourceFile=:SRC\ARMlet.c
 SourceFile=:SRC\common\filesys.c
 SourceFile=:SRC\common\menu.c
+SourceFile=:SRC\common\keyb.c
