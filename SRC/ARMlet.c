@@ -24,8 +24,8 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 
 	Bdisp_AllClr_DDVRAM();
 
-	read_string( result, 5, 1, 1 );
-
+	read_string( result, 10, 1, 1 );
+	
 	while( 1 )
 	{
 		GetKey( &key );

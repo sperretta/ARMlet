@@ -5,6 +5,45 @@
 #include "keyb.h"
 #include "syscalls.h"
 
+int cursor_x = 0;
+int cursor_y = 0;
+
+void cursor_on()
+{
+	// Start timer.
+	SetTimer( ID_USER_TIMER1, 500, &cursor_handler );
+}
+
+void cursor_off()
+{
+	KillTimer( ID_USER_TIMER1 );
+	Bdisp_ClearLineVRAM( cursor_x, cursor_y, cursor_x, cursor_y + 6 );
+}
+
+void cursor_handler()
+{
+	Bdisp_AreaReverseVRAM( cursor_x, cursor_y, cursor_x, cursor_y + 6 );
+	Bdisp_PutDisp_DD();
+}
+
+void move_cursor( int x, int y )
+{
+	// Backup previous cursor location.
+	int tmp_x = cursor_x, tmp_y = cursor_y;
+
+	// Move cursor.
+	cursor_x = x;
+	cursor_y = y;
+
+	// Clear previous position of cursor.
+	Bdisp_ClearLineVRAM( tmp_x, tmp_y, tmp_x, tmp_y + 6 );
+}
+
+void move_cursor_cr( int column, int row )
+{
+	move_cursor( ( column - 1 ) * 6, ( row - 1 ) * 8 );
+}
+
 // Add parameter to choose what type of characters
 int read_string( char **result, int max_length, int x_start, int y_start )
 {
@@ -20,8 +59,10 @@ int read_string( char **result, int max_length, int x_start, int y_start )
 	((( char * )*result)[max_length]) = '\0';
 
 	locate( x_start, y_start );
+	move_cursor_cr( x_start, y_start );
 
-	Cursor_SetFlashOn( 0 );
+	//Cursor_SetFlashOn( 0 );
+	cursor_on();
 
 	do {
 		GetKey( &key );
@@ -87,11 +128,14 @@ int read_string( char **result, int max_length, int x_start, int y_start )
 
 		// Update display
 		locate( x_start, y_start );
+		move_cursor_cr( x_start, y_start );
 		Print( ( unsigned char * )*result );
 		locate( x_start + position, y_start );
+		move_cursor_cr( x_start + position, y_start );
 	} while( key != KEY_CTRL_EXE );
 
-	Cursor_SetFlashOff();
+	//Cursor_SetFlashOff();
+	cursor_off();
 
 	// Remove trailing spaces & shrink?
 	((( char * )*result)[length]) = '\0';
